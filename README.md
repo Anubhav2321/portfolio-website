@@ -66,3 +66,43 @@ anubhav-portfolio/
 ├── index.html              # Main HTML file containing the entire UI structure
 ├── favicon.png             # Website Favicon
 └── README.md               # You are reading this!
+
+```
+---
+## 💻 Run Locally 
+Want to test this project on your local machine? It's as simple as 1-2-3!
+## 1. Clone the repository:
+```text
+git clone [https://github.com/Anubhav2321/portfolio-website.git](https://github.com/Anubhav2321/portfolio-website.git)
+
+```
+---
+## 2. Navigate to the directory:
+
+```text
+cd portfolio-website
+```
+---
+## 3. Run the project: 
+* Simply double-click the index.html file to open it in your default web browser.
+
+* Pro Tip: Use VS Code's "Live Server" extension for the best development and hot-reload experience.
+
+## 📫 Let's Connect!
+
+<p align="center">
+<a href="https://www.google.com/search?q=https://www.linkedin.com/in/anubhav-samanta" target="_blank">
+<img src="https://www.google.com/search?q=https://img.shields.io/badge/LinkedIn-0077B5%3Fstyle%3Dfor-the-badge%26logo%3Dlinkedin%26logoColor%3Dwhite" alt="LinkedIn" />
+</a>
+<a href="https://github.com/Anubhav2321" target="_blank">
+<img src="https://www.google.com/search?q=https://img.shields.io/badge/GitHub-100000%3Fstyle%3Dfor-the-badge%26logo%3Dgithub%26logoColor%3Dwhite" alt="GitHub" />
+</a>
+<a href="https://www.google.com/search?q=https://www.instagram.com/r.d.x___anubhav" target="_blank">
+<img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" />
+</a>
+<a href="mailto:anubhavsamanta2005@gmail.com" target="_blank">
+<img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" />
+</a>
+</p>
+
+
