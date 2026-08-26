@@ -217,3 +217,152 @@ portfolio-website/
 ├── favicon.png
 ├── index.html
 └── README.md
+```
+# 🚀 Getting Started
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/Anubhav2321/portfolio-website.git
+```
+
+### 2️⃣ Navigate to the Project
+
+```bash
+cd portfolio-website
+```
+
+### 3️⃣ Run the Website
+
+This is a static website, so you can directly open:
+
+```text
+index.html
+```
+
+in your browser.
+
+For development, you can also use **VS Code Live Server**.
+
+---
+
+# 🌐 Portfolio
+
+<div align="center">
+
+<a href="https://anubhav-portfolio-delta-kohl.vercel.app/" target="_blank">
+  <img src="https://img.shields.io/badge/EXPLORE_MY_PORTFOLIO-00F2FE?style=for-the-badge&logo=vercel&logoColor=white&labelColor=050505" alt="Explore My Portfolio">
+</a>
+
+<br><br>
+
+<a href="https://anubhav-portfolio-delta-kohl.vercel.app/" target="_blank">
+  <strong>🌐 anubhav-portfolio-delta-kohl.vercel.app</strong>
+</a>
+
+</div>
+
+---
+
+# 📱 Responsive Design
+
+The portfolio is optimized for:
+
+```text
+🖥️ Desktop
+💻 Laptop
+📱 Mobile
+📲 Tablet
+```
+
+The interface adapts to different screen sizes while maintaining a clean and modern user experience.
+
+---
+
+# ✨ Key Features
+
+* 🌑 Dark / Light Mode
+* ⚡ Smooth Animations
+* 🎨 Modern Futuristic UI
+* 🌌 Animated Background
+* 💎 Glass-style UI Elements
+* 🧊 Interactive 3D Skill Cards
+* 📊 Animated Skill Indicators
+* 📱 Fully Responsive
+* 🏆 Certification Showcase
+* 🚀 Project Showcase
+* 🖼️ Project Preview Images
+* 📩 Contact Section
+* ⚡ Performance-focused Design
+
+---
+
+# 🔮 Future Improvements
+
+* 🤖 Add more AI/ML projects
+* 📊 Add GitHub contribution statistics
+* 📝 Add technical blog section
+* 🔍 Improve SEO
+* ♿ Improve accessibility
+* 🌍 Add multilingual support
+* 📈 Add project analytics
+* 🎬 Add more advanced micro-interactions
+* 🚀 Improve overall performance
+
+---
+
+# 📊 Development Philosophy
+
+<div align="center">
+
+### I believe great software should be:
+
+**⚡ Fast** • **🎨 Beautiful** • **📱 Responsive** • **🧠 Intelligent**
+
+**🔐 Secure** • **🧩 Maintainable** • **🚀 Scalable**
+
+</div>
+
+---
+
+# 🤝 Connect With Me
+
+<div align="center">
+
+<a href="https://github.com/Anubhav2321" target="_blank">
+  <img src="https://skillicons.dev/icons?i=github" width="55" alt="GitHub">
+</a>
+
+   
+
+<a href="https://anubhav-portfolio-delta-kohl.vercel.app/" target="_blank">
+  <img src="https://img.icons8.com/fluency/64/domain.png" width="55" alt="Portfolio">
+</a>
+
+<br><br>
+
+### 👨‍💻 Anubhav Samanta
+
+**Full Stack Developer • AI/ML Enthusiast • Problem Solver**
+
+<br>
+
+*"Turning ideas into intelligent, interactive and meaningful digital experiences."*
+
+</div>
+
+---
+
+<div align="center">
+
+### ⭐ If you like my work, consider giving this repository a star!
+
+<br>
+
+**Made with ❤️ and lots of ☕ by Anubhav Samanta**
+
+<br>
+
+`Code` • `Create` • `Learn` • `Innovate`
+
+</div>
