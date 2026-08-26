@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -59,25 +59,43 @@
                               radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
         }
 
-        /* Optimized Glassmorphism */
+        /* PERFORMANCE FIX: Replaced backdrop-filter with solid backgrounds.
+           backdrop-filter: blur() is the #1 cause of scroll jank because
+           the browser must re-composite every frame during scroll. */
         html.dark .glass {
-            background: rgba(10, 10, 10, 0.6);
-            -webkit-backdrop-filter: blur(12px);
-            backdrop-filter: blur(12px);
+            background: rgba(10, 10, 10, 0.92);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
         html:not(.dark) .glass {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(0, 100, 255, 0.1);
+        }
+
+        /* Keep backdrop-filter ONLY on the fixed navbar (small area = acceptable cost) */
+        #navbar.glass {
             -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 100, 255, 0.1);
+            will-change: transform;
+            transform: translateZ(0);
+        }
+        html.dark #navbar.glass {
+            background: rgba(10, 10, 10, 0.7);
+        }
+        html:not(.dark) #navbar.glass {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        /* CSS containment to limit repaint scope on cards */
+        .skill-category-card,
+        .cert-card-premium,
+        .project-card {
+            contain: layout style paint;
         }
 
         /* HERO IMAGE CUSTOM CSS */
         .hero-img-custom {
             filter: grayscale(0%) drop-shadow(0 10px 20px rgba(0,0,0,0.2));
             transition: transform 0.4s ease-out, filter 0.4s ease-out;
-            will-change: transform;
         }
         html.dark .hero-img-custom {
             filter: grayscale(0%) drop-shadow(0 10px 20px rgba(0,0,0,0.4));
@@ -109,21 +127,27 @@
             62% { transform: translate(0,0) skew(5deg); }
         }
 
-        /* PERFORMANCE FIX: Added will-change for smooth mobile stars */
+        /* PERFORMANCE FIX: Stars use GPU layer via translateZ(0) */
         .star {
             position: absolute;
             border-radius: 50%;
             opacity: 0;
-            will-change: transform, opacity;
+            transform: translateZ(0);
             animation: float-star linear infinite;
         }
         html.dark .star { background-color: rgba(255, 255, 255, 0.4); }
         html:not(.dark) .star { background-color: rgba(0, 242, 254, 0.3); }
         @keyframes float-star {
-            0% { opacity: 0; transform: translateY(0); }
+            0% { opacity: 0; transform: translateZ(0) translateY(0); }
             10% { opacity: 0.3; } 
             90% { opacity: 0.3; }
-            100% { opacity: 0; transform: translateY(-100vh); }
+            100% { opacity: 0; transform: translateZ(0) translateY(-100vh); }
+        }
+
+        /* PERFORMANCE FIX: Stars container on its own GPU layer */
+        #stars-container {
+            transform: translateZ(0);
+            contain: strict;
         }
 
         .hero-img-container {
@@ -159,7 +183,6 @@
         .skill-category-card {
             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
             transform-style: preserve-3d;
-            will-change: transform;
         }
         .skill-category-card:hover {
             transform: perspective(1000px) rotateY(-3deg) rotateX(3deg) translateZ(15px) scale(1.02);
@@ -276,7 +299,7 @@
 </head>
 <body class="text-slate-900 dark:text-slate-200 antialiased selection:bg-primary selection:text-dark overflow-x-hidden relative">
 
-    <div id="stars-container" class="fixed inset-0 pointer-events-none z-0"></div>
+    <div id="stars-container" class="fixed inset-0 pointer-events-none z-0" aria-hidden="true"></div>
 
     <div id="preloader" class="fixed inset-0 z-[150] flex items-center justify-center bg-[#050505] transition-opacity duration-500 ease-out">
         <div class="text-5xl md:text-7xl font-bold tracking-tighter drop-shadow-[0_0_20px_rgba(0,242,254,0.6)] glitch-text">
@@ -834,14 +857,13 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- PROJECT 6: Premium Weather App (NEW) -->
                 <div class="project-card group rounded-2xl overflow-hidden glass dark:border-white/10 shadow-lg flex flex-col">
                     <div class="relative overflow-hidden aspect-video">
                         <img src="assets/images/projects/weather-app.jpg" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1592210454359-9043f067919b?fit=crop&amp;w=600&amp;q=80'" alt="Premium Weather App" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                         <div class="absolute inset-0 bg-white/90 dark:bg-[#050505]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-                            <a href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-sm bg-primary text-dark rounded-full font-bold hover:-translate-y-1 transition-transform"><i class="fas fa-external-link-alt mr-1"></i>Demo</a>
-                            <a href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-sm border border-slate-400 dark:border-white/20 text-slate-800 dark:text-white rounded-full font-bold hover:bg-slate-200 dark:hover:bg-white/10 transition-colors"><i class="fab fa-github mr-1"></i>GitHub</a>
+                            <a href="https://anubhav-portfolio-delta-kohl.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-sm bg-primary text-dark rounded-full font-bold hover:-translate-y-1 transition-transform"><i class="fas fa-external-link-alt mr-1"></i>Demo</a>
+                            <a href="https://github.com/Anubhav2321/Weather-App.git" target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-sm border border-slate-400 dark:border-white/20 text-slate-800 dark:text-white rounded-full font-bold hover:bg-slate-200 dark:hover:bg-white/10 transition-colors"><i class="fab fa-github mr-1"></i>GitHub</a>
                         </div>
                     </div>
                     <div class="p-5 md:p-6 bg-transparent flex-grow border-t border-blue-900/10 dark:border-white/5 flex flex-col">
@@ -1271,26 +1293,23 @@
             if (event.target.id === 'eduskills-modal') { closeModal('eduskills-modal'); }
         }
 
-        // PERFORMANCE FIXED: Reduced Stars & Added will-change
+        // PERFORMANCE FIXED: Reduced star count & batch DOM insertion
         const starsContainer = document.getElementById('stars-container');
-        // Less stars on mobile for better performance
         const isMobile = window.innerWidth < 768;
-        const numberOfStars = isMobile ? 30 : 60; 
+        const numberOfStars = isMobile ? 15 : 35;
 
+        // Batch star creation using DocumentFragment to avoid layout thrashing
+        const fragment = document.createDocumentFragment();
         for (let i = 0; i < numberOfStars; i++) {
-            let star = document.createElement('div');
+            const star = document.createElement('div');
             star.className = 'star';
-            let duration = Math.random() * (25 - 15) + 15; 
-            let delay = Math.random() * -30; 
-            let size = Math.random() * 2 + 1; 
-            star.style.left = `${Math.random() * 100}vw`;
-            star.style.top = `${Math.random() * 100}vh`; 
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
-            star.style.animationDuration = `${duration}s`;
-            star.style.animationDelay = `${delay}s`;
-            starsContainer.appendChild(star);
+            const duration = Math.random() * (25 - 15) + 15;
+            const delay = Math.random() * -30;
+            const size = Math.random() * 2 + 1;
+            star.style.cssText = `left:${Math.random() * 100}vw;top:${Math.random() * 100}vh;width:${size}px;height:${size}px;animation-duration:${duration}s;animation-delay:${delay}s`;
+            fragment.appendChild(star);
         }
+        starsContainer.appendChild(fragment);
 
         // PRELOADER LOGIC
         setTimeout(() => {
@@ -1304,25 +1323,32 @@
             }
         }, 1200); 
 
-        // ACTIVE NAV LINK SPY
+        // ACTIVE NAV LINK SPY — throttled with rAF for 60fps scroll
         const sections = document.querySelectorAll("section[id]");
         const navLinksDesktop = document.querySelectorAll(".nav-link");
+        let scrollTicking = false;
         window.addEventListener("scroll", () => {
-            let current = "";
-            sections.forEach((section) => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - sectionHeight / 3) {
-                    current = section.getAttribute("id");
-                }
-            });
-            navLinksDesktop.forEach((link) => {
-                link.classList.remove("active");
-                if (link.getAttribute("href").includes(current)) {
-                    link.classList.add("active");
-                }
-            });
-        });
+            if (!scrollTicking) {
+                requestAnimationFrame(() => {
+                    let current = "";
+                    sections.forEach((section) => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.clientHeight;
+                        if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                            current = section.getAttribute("id");
+                        }
+                    });
+                    navLinksDesktop.forEach((link) => {
+                        link.classList.remove("active");
+                        if (link.getAttribute("href").includes(current)) {
+                            link.classList.add("active");
+                        }
+                    });
+                    scrollTicking = false;
+                });
+                scrollTicking = true;
+            }
+        }, { passive: true });
 
         // ======== SKILL BAR ANIMATION (Intersection Observer) ========
         const skillBars = document.querySelectorAll('.skill-bar-fill');
